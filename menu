@@ -1,0 +1,11 @@
+[begin] (fluxbox)
+[exec] (Terminator) {/usr/bin/terminator} </usr/share/pixmaps/terminator.png>
+[exec] (Firefox) {/usr/bin/firefox} </usr/share/pixmaps/firefox.png>
+
+# Create this if additional add-ons should be added that are specific
+# to the system and shouldn't be shared
+[include] (~/.fluxbox/custom-menu)
+
+[nop] (---------------------------------------)
+[include] (/etc/X11/fluxbox/fluxbox-menu)
+[end]

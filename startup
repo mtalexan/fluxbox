@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# fluxbox startup-script:
+#
+# Lines starting with a '#' are ignored.
+
+# Change your keymap:
+xmodmap "~/.Xmodmap"
+
+# Applications you want to run with fluxbox.
+# MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
+
+# Allow gnome related things
+if [ "x$(pidof gnome-settings-daemon)" == "x" ] ; then
+    gnome-settings-daemon &
+fi
+
+# Keep nautilus running in the background to automate things
+# like USB hotplug and whatnot
+if [ "x$(pidof nautilus)" == "x" ] ; then
+    nautilus -n --no-desktop &
+fi
+
+########################################################################
+
+# All changes that shouldn't be shared among everyone should be
+# placed in this file, creating it if necessary
+if [ -e ~/.fluxbox/custom-startup ] ; then
+    ~/.fluxbox/custom-startup
+fi
+
+#########################################################################
+
+# Debian-local change:
+#   - fbautostart has been added with a quick hack to check to see if it
+#     exists. If it does, we'll start it up by default.
+# This is modified by the Ubuntu provided startup tool via gnome-session-properties
+#
+# The files we look for are in ~/.config/fluxbox-autostart and
+# gnome-session-properties modifies the ones in ~/.config/autostart.
+# Symlink the ones you want enabled into ~/.config/fluxbox-autostart/autostart
+# This will also start everything in /etc/xdg/autostart/, which is where
+# Unity and other launchers store their system GUI startup files.  You may
+# need to hand modify the files there to add FLUXBOX to OnlyShowIn and NotShowIn lists, eg:
+#  OnlyShowIn=Unity;FLUXBOX;
+#  NotShowIn=GNOME;Unity:FLUXBOX;
+which fbautostart > /dev/null
+if [ $? -eq 0 ]; then
+    XDG_CONFIG_HOME=~/.config/fluxbox-autostart/ fbautostart &
+fi
+
+# And last but not least we start fluxbox.
+# Because it is the last app you have to run it with ''exec'' before it.
+
+#exec fluxbox
+# or if you want to keep a log:
+exec fluxbox -log "~/.fluxbox/log"
