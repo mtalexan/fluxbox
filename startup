@@ -10,16 +10,26 @@ xmodmap "~/.Xmodmap"
 # Applications you want to run with fluxbox.
 # MAKE SURE THAT APPS THAT KEEP RUNNING HAVE AN ''&'' AT THE END.
 
+# Checks if a command is already running, then if not and the command is available on
+# the system it will start it in the background.
+# 1: Command to check for, look for, and run
+# 2: Options to pass to the command if/when run
+check_and_start()
+{
+    if [ "x$(pidof $1)" == "x" ] && command -v $1 &>/dev/null ; then
+        $1 $2 &
+    fi
+}
+
 # Allow gnome related things
-if [ "x$(pidof gnome-settings-daemon)" == "x" ] ; then
-    gnome-settings-daemon &
-fi
+check_and_start gnome-settings-daemon
 
 # Keep nautilus running in the background to automate things
 # like USB hotplug and whatnot
-if [ "x$(pidof nautilus)" == "x" ] ; then
-    nautilus -n --no-desktop &
-fi
+check_and_start nautilus "-n --no-desktop"
+
+# If we are in VMWare, we have to manually run this tool for the integration to work properly
+check_and_start vmware-user-suid-wrapper
 
 ########################################################################
 
