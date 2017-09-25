@@ -31,6 +31,9 @@ check_and_start nautilus "-n --no-desktop"
 # If we are in VMWare, we have to manually run this tool for the integration to work properly
 check_and_start vmware-user-suid-wrapper
 
+# Systray icon for network management, autostart doesn't start it properly
+check_and_start nm-applet
+
 ########################################################################
 
 # All changes that shouldn't be shared among everyone should be
