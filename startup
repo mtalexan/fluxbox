@@ -34,6 +34,13 @@ check_and_start vmware-user-suid-wrapper
 # Systray icon for network management, autostart doesn't start it properly
 check_and_start nm-applet
 
+# Start osdsh if we can, and use our common theme for it
+if [ "x$(pidof osdsh)" == "x" ] && command -v osdsh &>/dev/null ; then
+    osdsh &
+    sleep 1 #give it a chance to start
+    osdctl -S ~/.fluxbox/osdsh_theme
+fi
+
 ########################################################################
 
 # All changes that shouldn't be shared among everyone should be
