@@ -67,6 +67,7 @@ Mod1 F1 :Exec terminator
 
 # open a dialog to run programs (like launchy)
 Mod4 bracketright :Exec fbrun -fg white -bg black
+Mod4 R :Exec fbrun -fg white -bg black
 
 # volume settings, using common keycodes
 # if these don't work, use xev to find out your real keycodes
@@ -99,6 +100,30 @@ Control Shift Mod4 J :MoveLeft 5
 Control Shift Mod4 L :MoveRight 5
 Control Shift Mod4 I :MoveUp 5
 Control Shift Mod4 K :MoveDown 5
+
+# Set to half-screen or quarter screen with the Win+keypad keys
+Mod4 KP_6 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
+Mod4 KP_Right : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
+Mod4 KP_4 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopLeft }
+Mod4 KP_Left :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopLeft }
+Mod4 KP_8 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% TopLeft }
+Mod4 KP_Up :    MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% TopLeft }
+Mod4 KP_2 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% BottomLeft }
+Mod4 KP_Down :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% BottomLeft }
+
+Mod4 KP_7 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopLeft }
+Mod4 KP_Home :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopLeft }
+Mod4 KP_9 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopRight }
+Mod4 KP_Prior : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopRight }
+Mod4 KP_1 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomLeft }
+Mod4 KP_End :   MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomLeft }
+Mod4 KP_3 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomRight }
+Mod4 KP_Next :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomRight }
+
+# This command doesn't work properly with multi-head (more than one monitor) because Center anchor is
+# applied across all heads, unlike the other anchor types that are specific to the current head
+Mod4 KP_5 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center }
+Mod4 KP_Begin : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center}
 
 ## open the window menu
 #Mod1 space :WindowMenu
