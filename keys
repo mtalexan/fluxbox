@@ -88,41 +88,41 @@ Mod4 M :MaximizeWindow
 
 # Win+W enters window edit mode, with Win+W exiting
 Mod4 W : MacroCmd {keyMode WinMode Mod4 W} {Exec osdctl -s "Window Edit mode,Exit with Win+W"}
-WinMode: Control Left :ResizeHorizontal -5
-WinMode: Control Right :ResizeHorizontal 5
-WinMode: Control Up :ResizeVertical -1
-WinMode: Control Down :ResizeVertical 1
-WinMode: Control J :ResizeHorizontal -5
-WinMode: Control L :ResizeHorizontal 5
-WinMode: Control I :ResizeVertical -1
-WinMode: Control K :ResizeVertical 1
+WinMode: Control Shift Left :ResizeHorizontal -5
+WinMode: Control Shift Right :ResizeHorizontal 5
+WinMode: Control Shift Up :ResizeVertical -1
+WinMode: Control Shift Down :ResizeVertical 1
+WinMode: Control Shift J :ResizeHorizontal -5
+WinMode: Control Shift L :ResizeHorizontal 5
+WinMode: Control Shift I :ResizeVertical -1
+WinMode: Control Shift K :ResizeVertical 1
 
-WinMode: Control Shift Left :ResizeHorizontal -20
-WinMode: Control Shift Right :ResizeHorizontal 20
-WinMode: Control Shift Up :ResizeVertical -5
-WinMode: Control Shift Down :ResizeVertical 5
-WinMode: Control Shift J :ResizeHorizontal -20
-WinMode: Control Shift L :ResizeHorizontal 20
-WinMode: Control Shift I :ResizeVertical -5
-WinMode: Control Shift K :ResizeVertical 5
+WinMode: Control Left :ResizeHorizontal -20
+WinMode: Control Right :ResizeHorizontal 20
+WinMode: Control Up :ResizeVertical -5
+WinMode: Control Down :ResizeVertical 5
+WinMode: Control J :ResizeHorizontal -20
+WinMode: Control L :ResizeHorizontal 20
+WinMode: Control I :ResizeVertical -5
+WinMode: Control K :ResizeVertical 5
 
-WinMode: Left :MoveLeft 5
-WinMode: Right :MoveRight 5
-WinMode: Up :MoveUp 5
-WinMode: Down :MoveDown 5
-WinMode: J :MoveLeft 5
-WinMode: L :MoveRight 5
-WinMode: I :MoveUp 5
-WinMode: K :MoveDown 5
+WinMode: Shift Left :MoveLeft 5
+WinMode: Shift Right :MoveRight 5
+WinMode: Shift Up :MoveUp 5
+WinMode: Shift Down :MoveDown 5
+WinMode: Shift J :MoveLeft 5
+WinMode: Shift L :MoveRight 5
+WinMode: Shift I :MoveUp 5
+WinMode: Shift K :MoveDown 5
 
-WinMode: Shift Left :MoveLeft 20
-WinMode: Shift Right :MoveRight 20
-WinMode: Shift Up :MoveUp 20
-WinMode: Shift Down :MoveDown 20
-WinMode: Shift J :MoveLeft 20
-WinMode: Shift L :MoveRight 20
-WinMode: Shift I :MoveUp 20
-WinMode: Shift K :MoveDown 20
+WinMode: Left :MoveLeft 20
+WinMode: Right :MoveRight 20
+WinMode: Up :MoveUp 20
+WinMode: Down :MoveDown 20
+WinMode: J :MoveLeft 20
+WinMode: L :MoveRight 20
+WinMode: I :MoveUp 20
+WinMode: K :MoveDown 20
 
 # Set to half-screen or quarter screen with the Win+keypad keys
 Mod4 KP_6 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
