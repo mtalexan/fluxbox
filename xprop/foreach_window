@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Expects a script or series of commands that will be passed the window ID
+# of each xwindow iteratively via a piped xargs command.  The script should check
+# whatever condition is desired (likely with xprop -id winid), and exit
+# with code 0 if the loop can continue.  Otherwise it should exit non-zero.
+#
+# This script will return 0 if the operation script/command(s) provided
+# return zero for all windows, otherwise it will exit non-zero if the loop
+# broke before completing for all windows.
+# If there are no windows, the operation script will be provided the window
+# id of "none" instead of a hexadecimal number.  It's up to the operation
+# script how to handle this case.
+
+
+# the logic is actually identical to the ifall_window, but the expectation
+# is that operations will actually occur on each window rather than just
+# read-only checks on them
+$(dirname ${BASH_SOURCE})/ifall_window $@
+exit $?

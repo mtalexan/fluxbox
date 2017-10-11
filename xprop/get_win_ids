@@ -1,0 +1,4 @@
+# Source this into another script to create a WIN_IDS array containing all window IDs
+
+# Get the window ID list into an array
+WIN_IDS=($(xprop -root _NET_CLIENT_LIST | awk -F'window id #[[:space:]]*' '{print $2}' | sed -e 's@,@@g'))

@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# Expects a script or series of commands that will be passed the window ID
+# of each xwindow iteratively via a pipe command.  The script should check
+# whatever condition is desired (likely with xprop -id winid), and exit
+# with code 0 if the condition is met.  Otherwise it should exit non-zero.
+#
+# This script will return 0 if the condition script/command(s) provided
+# return zero for all windows.
+# If there are no windows, the condition script will be provided the window
+# id of "none" instead of a hexadecimal number.  It's up to the condition
+# script how to handle this case.
+
+source $(dirname ${BASH_SOURCE})/get_win_ids
+
+FAIL=false
+if [ ${#WIN_IDS[@]} -eq 0 ] ; then
+    echo "none" | xargs $@
+    if [ $? -ne 0 ] ; then
+        FAIL=true
+    fi
+else
+    for WID in ${WIN_IDS[@]} ; do
+        echo ${WID} | xargs $@
+        if [ $? -ne 0 ] ; then
+            FAIL=true
+            break
+        fi
+    done
+fi
+
+if $FAIL ; then
+    exit 1
+else
+    exit 0
+fi
