@@ -1,3 +1,8 @@
+#!/bin/sh
+# Extracts the current desktop name and echos it to an xargs wrapping any
+# command line arguments provided.  If no command line arguments are provided
+# it will simply print the desktop name
+
 xprop -root _NET_CURRENT_DESKTOP _NET_NUMBER_OF_DESKTOPS _NET_DESKTOP_NAMES | awk '
          # use the equals sign (with optional spaces around it) as the separator
          BEGIN { FS="[[:space:]]*=[[:space:]]*"; }
@@ -15,6 +20,6 @@ xprop -root _NET_CURRENT_DESKTOP _NET_NUMBER_OF_DESKTOPS _NET_DESKTOP_NAMES | aw
          }
 
          # the actual printing fo what we want to output
-         END { print "\""names[current]"\"" };' | xargs $@
+         END { print "\""names[current]"\"" };' | xargs "$@"
 
 

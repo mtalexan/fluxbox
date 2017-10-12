@@ -8,6 +8,8 @@ OnDesktop Mouse1 :HideMenus
 OnDesktop Mouse2 :WorkspaceMenu
 OnDesktop Mouse3 :RootMenu
 
+Mod4 Escape :RootMenu
+
 # scroll on the desktop to change workspaces
 OnDesktop Mouse4 :PrevWorkspace
 OnDesktop Mouse5 :NextWorkspace
@@ -87,7 +89,13 @@ Mod1 F11 :Fullscreen
 Mod4 M :MaximizeWindow
 
 # Win+W enters window edit mode, with Win+W exiting
-Mod4 W : MacroCmd {keyMode WinMode Mod4 W} {Exec osdctl -s "Window Edit mode,Exit with Win+W"}
+Mod4 W : MacroCmd {Exec ~/.fluxbox/osd_cat_scripts/my_osd_cat.sh --delay=1 --lines=1 "WinMode"} {KeyMode WinMode Mod4 W}
+
+# FLUXBOX BUG: KeyMode default only works intermittently to exit a keymode
+WinMode: Control E : KeyMode 
+# FLUXBOX BUG: MacroCmd and Exec don't work within non-default KeyMode
+#WinMode: Mod4 W : MacroCmd {Exec ~/.fluxbox/osd_cat_scripts/my_osd_cat.sh --delay=1 --lines=1 "-WinMode"} {KeyMode default}
+
 WinMode: Control Shift Left :ResizeHorizontal -5
 WinMode: Control Shift Right :ResizeHorizontal 5
 WinMode: Control Shift Up :ResizeVertical -1
@@ -124,29 +132,52 @@ WinMode: L :MoveRight 20
 WinMode: I :MoveUp 20
 WinMode: K :MoveDown 20
 
-# Set to half-screen or quarter screen with the Win+keypad keys
-Mod4 KP_6 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
-Mod4 KP_Right : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
-Mod4 KP_4 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopLeft }
-Mod4 KP_Left :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopLeft }
-Mod4 KP_8 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% TopLeft }
-Mod4 KP_Up :    MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% TopLeft }
-Mod4 KP_2 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% BottomLeft }
-Mod4 KP_Down :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% BottomLeft }
+WinMode: Mod4 space :WindowMenu
 
-Mod4 KP_7 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopLeft }
-Mod4 KP_Home :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopLeft }
-Mod4 KP_9 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopRight }
-Mod4 KP_Prior : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopRight }
-Mod4 KP_1 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomLeft }
-Mod4 KP_End :   MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomLeft }
-Mod4 KP_3 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomRight }
-Mod4 KP_Next :  MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomRight }
+# Set to half-screen or quarter screen with the Win+keypad keys
+
+# Keypad keys KP_?? don't work, so we have to use the raw values
+#  Also the KP_End, KP_Down, etc aren't recognized even as raw because regardless
+#  of the NumLock state we actually get the KP_1, KP_2, etc
+# KP_1		0xffb1	KP_End 		0xff9c
+# KP_2		0xffb2	KP_Down 	0xff99
+# KP_3		0xffb3	KP_Next		0xff9b
+# KP_4		0xffb4	KP_Left		0xff96
+# KP_5		0xffb5	KP_Begin	0xff9d
+# KP_6		0xffb6	KP_Right	0xff98
+# KP_7		0xffb7	KP_Home		0xff95
+# KP_8		0xffb8	KP_Up		0xff97
+# KP_9		0xffb9	KP_Prior	0xff9a
+# KP_0		0xffb0	KP_Insert	0xff9e
+# KP_Decimal	0xffae	KP_Delete	0xff9f
+# KP_Add	0xffab
+# KP_Subtract	0xffad
+# KP_Divide	0xffaf
+# KP_Multiply	0xffaa
+# KP_Enter	0xff8d
+
+#KP_6
+Mod4 0xffb6 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopRight }
+#KP_4
+Mod4 0xffb4 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo  50% 100% } { MoveTo 0% 0% TopLeft }
+#KP_8
+Mod4 0xffb8 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% TopLeft }
+#KP_2
+Mod4 0xffb2 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 100%  50% } { MoveTo 0% 0% BottomLeft }
+
+#KP_7
+Mod4 0xffb7 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopLeft }
+#KP_9
+Mod4 0xffb9 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% TopRight }
+#KP_1
+Mod4 0xffb1 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomLeft }
+#KP_3
+Mod4 0xffb3 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { MoveTo 0% 0% BottomRight }
 
 # This command doesn't work properly with multi-head (more than one monitor) because Center anchor is
 # applied across all heads, unlike the other anchor types that are specific to the current head
-Mod4 KP_5 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center }
-Mod4 KP_Begin : MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center}
+#KP_5
+Mod4 0xffb5 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center }
 
 ## open the window menu
 #Mod1 space :WindowMenu
@@ -216,4 +247,4 @@ Mod4 Right :SendToNextHead
 Mod4 D :ShowDesktop
 
 # Whenever the workspace changes display the name
-ChangeWorkspace : Exec ~/.fluxbox/fbcmd_workspace_name.sh osdctl -s
+ChangeWorkspace : Exec  ~/.fluxbox/osd_cat_scripts/my_osd_cat.sh --color=red --delay=1 --lines=1 "$(~/.fluxbox/fbcmd_workspace_name.sh)"
