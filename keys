@@ -91,9 +91,10 @@ Mod4 M :MaximizeWindow
 # Win+W enters window edit mode, with Win+W exiting
 Mod4 W : MacroCmd {Exec ~/.fluxbox/osd_cat_scripts/my_osd_cat.sh --delay=1 --lines=1 "WinMode"} {KeyMode WinMode Mod4 W}
 
-# FLUXBOX BUG: KeyMode default only works intermittently to exit a keymode
-WinMode: Control E : KeyMode 
-# FLUXBOX BUG: MacroCmd and Exec don't work within non-default KeyMode
+# FLUXBOX 1.3.5 BUG: KeyMode default only works intermittently to exit a keymode
+# FLUXBOX 1.3.7 BUG : Keymode cannot be the command for an existing key mode binding
+#WinMode: Control E : KeyMode default
+# FLUXBOX 1.3.5 BUG: MacroCmd and Exec don't work within non-default KeyMode
 #WinMode: Mod4 W : MacroCmd {Exec ~/.fluxbox/osd_cat_scripts/my_osd_cat.sh --delay=1 --lines=1 "-WinMode"} {KeyMode default}
 
 WinMode: Control Shift Left :ResizeHorizontal -5
@@ -177,7 +178,8 @@ Mod4 0xffb3 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% }  { Move
 # This command doesn't work properly with multi-head (more than one monitor) because Center anchor is
 # applied across all heads, unlike the other anchor types that are specific to the current head
 #KP_5
-Mod4 0xffb5 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center }
+#Mod4 0xffb5 :     MacroCmd { MoveTo 0% 0% TopLeft } { ResizeTo 50% 50% } { MoveTo 50% 50% Center }
+Mod4 0xffb5 : ArrangeWindowsVertical
 
 ## open the window menu
 #Mod1 space :WindowMenu
