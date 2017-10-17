@@ -34,6 +34,9 @@ check_and_start vmware-user-suid-wrapper
 # Systray icon for network management, autostart doesn't start it properly
 check_and_start nm-applet
 
+# Run this to set the background to the last thing fluxbox configured it to
+fbsetbg -l
+
 ########################################################################
 
 # All changes that shouldn't be shared among everyone should be
