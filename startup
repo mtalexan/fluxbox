@@ -22,11 +22,11 @@ check_and_start()
 }
 
 # Allow gnome related things
-#check_and_start gnome-settings-daemon
+check_and_start gnome-settings-daemon
 
 # Keep nautilus running in the background to automate things
 # like USB hotplug and whatnot
-#check_and_start nautilus "-n --no-desktop"
+check_and_start nautilus "-n --no-desktop"
 
 # If we are in VMWare, we have to manually run this tool for the integration to work properly
 check_and_start vmware-user-suid-wrapper
