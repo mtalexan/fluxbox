@@ -1,5 +1,6 @@
 [begin] (fluxbox)
-[exec] (XTerm) {/usr/bin/xterm} </usr/share/pixmaps/xterm-color_48x48.png>
+[exec] (XTerm) {/usr/bin/xterm} </usr/share/pixmaps/xterm-color_32x32.png>
+[exec] (Terminator) {/usr/bin/terminator} </usr/share/pixmaps/terminator.png>
 [exec] (Firefox) {/usr/bin/firefox} </usr/share/pixmaps/firefox.png>
 
 # Create this if additional add-ons should be added that are specific
