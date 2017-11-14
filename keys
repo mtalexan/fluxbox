@@ -135,6 +135,11 @@ WinMode: K :MoveDown 20
 
 WinMode: Mod4 space :WindowMenu
 
+#support Alt+Tab in WinMode
+WinMode: Mod1 Tab :NextWindow {groups} (workspace=[current])
+WinMode: Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
+
+
 # Set to half-screen or quarter screen with the Win+keypad keys
 
 # Keypad keys KP_?? don't work, so we have to use the raw values
@@ -158,7 +163,7 @@ WinMode: Mod4 space :WindowMenu
 # KP_Enter	0xff8d
 
 # X11 BUG: the windowsize that underlies the ResizeTo command infinite
-#          loops sometimes.  Therefore ResizeTo doesn't work right.
+#          loops sometimes.  Therefore ResizeTo doesn't work right with Terminator
 #          Replace it with the custom script that limits windows to stay
 #          fully on the desktop and works properly:
 #            ~/.fluxbox/ResizeWindowTo x[%] y[%]
@@ -175,28 +180,45 @@ WinMode: Mod4 space :WindowMenu
 #         using a % will set it to the percentage of the total screen size.
 
 #KP_6
-Mod4 0xffb6 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 50% 0% } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 100% }
+Mod4 0xffb6 :     MacroCmd { MoveTo 50% 0% } { ResizeTo 50% 100% }
 #KP_4
-Mod4 0xffb4 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 0 0 } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 100% }
+Mod4 0xffb4 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 100% }
 #KP_8
-Mod4 0xffb8 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 0 0 } { Exec ~/.fluxbox/ResizeWindowTo.sh 100% 50% }
+Mod4 0xffb8 :     MacroCmd { MoveTo 0 0 } { ResizeTo 100% 50% }
 #KP_2
-Mod4 0xffb2 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 0 50% } { Exec ~/.fluxbox/ResizeWindowTo.sh 100% 50% }
+Mod4 0xffb2 :     MacroCmd { MoveTo 0 50% } { ResizeTo 100% 50% }
 
 #KP_7
-Mod4 0xffb7 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 0 0 } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 50% }
+Mod4 0xffb7 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 50% }
 #KP_9
-Mod4 0xffb9 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 50% 0 } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 50% }
+Mod4 0xffb9 :     MacroCmd { MoveTo 50% 0 } { ResizeTo 50% 50% }
 #KP_1
-Mod4 0xffb1 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 0 50% } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 50% }
+Mod4 0xffb1 :     MacroCmd { MoveTo 0 50% } { ResizeTo 50% 50% }
 #KP_3
-Mod4 0xffb3 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 50% 50% } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 50% }
+Mod4 0xffb3 :     MacroCmd { MoveTo 50% 50% } { ResizeTo 50% 50% }
+
+#Shift KP_7
+Mod4 Shift 0xffb7 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 25% }
+#Shift KP_9
+Mod4 Shift 0xffb9 :     MacroCmd { MoveTo 50% 0 } { ResizeTo 50% 25% }
+#Shift KP_1
+Mod4 Shift 0xffb1 :     MacroCmd { MoveTo 0 75% } { ResizeTo 50% 25% }
+#Shift KP_3
+Mod4 Shift 0xffb3 :     MacroCmd { MoveTo 50% 75% } { ResizeTo 50% 25% }
+
+#Control KP_7
+Mod4 Control 0xffb7 :     MacroCmd { MoveTo 0 25% } { ResizeTo 50% 25% }
+#Control KP_9
+Mod4 Control 0xffb9 :     MacroCmd { MoveTo 50% 25% } { ResizeTo 50% 25% }
+#Control KP_1
+Mod4 Control 0xffb1 :     MacroCmd { MoveTo 0 50% } { ResizeTo 50% 25% }
+#Control KP_3
+Mod4 Control 0xffb3 :     MacroCmd { MoveTo 50% 50% } { ResizeTo 50% 25% }
 
 # This command doesn't work properly with multi-head (more than one monitor) because Center anchor is
 # applied across all heads, unlike the other anchor types that are specific to the current head
 #KP_5
-Mod4 0xffb5 :     MacroCmd { Exec ~/.fluxbox/MoveWindowTo.sh 25% 25% } { Exec ~/.fluxbox/ResizeWindowTo.sh 50% 50% }
-
+Mod4 0xffb5 :     MacroCmd { MoveTo 25% 25% } { ResizeTo 50% 50% }
 
 ## open the window menu
 #Mod1 space :WindowMenu
