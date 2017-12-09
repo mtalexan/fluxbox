@@ -25,8 +25,9 @@ check_and_start()
     fi
 }
 
-# Allow gnome related things
-check_and_start gnome-settings-daemon
+# Enable this via the fbautostart method instead if wanted
+## Allow gnome related things
+#check_and_start gnome-settings-daemon
 
 # Keep nautilus running in the background to automate things
 # like USB hotplug and whatnot
