@@ -71,7 +71,6 @@ Control F9 :Tab 9
 Mod1 F1 :Exec xterm
 
 # open a dialog to run programs (like launchy)
-Mod4 bracketright :Exec fbrun -fg white -bg black
 Mod4 R :Exec fbrun -fg white -bg black
 
 # volume settings, using common keycodes
@@ -180,9 +179,14 @@ WinMode: Mod1 Shift Tab :PrevWindow {groups} (workspace=[current])
 #         using a % will set it to the percentage of the total screen size.
 
 #KP_6
-Mod4 0xffb6 :     MacroCmd { MoveTo 50% 0% } { ResizeTo 50% 100% }
+Mod4 0xffb6 :       MacroCmd { MoveTo 50% 0% } { ResizeTo 50% 100% }
+#Right-bracket
+Mod4 bracketright : MacroCmd { MoveTo 50% 0% } { ResizeTo 50% 100% }
 #KP_4
-Mod4 0xffb4 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 100% }
+Mod4 0xffb4 :       MacroCmd { MoveTo 0 0 } { ResizeTo 50% 100% }
+#Left-bracket
+Mod4 bracketleft :  MacroCmd { MoveTo 0 0 } { ResizeTo 50% 100% }
+
 #KP_8
 Mod4 0xffb8 :     MacroCmd { MoveTo 0 0 } { ResizeTo 100% 50% }
 #KP_2
