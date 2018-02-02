@@ -3,10 +3,11 @@
 # fluxbox startup-script:
 #
 # Lines starting with a '#' are ignored.
+# Paths with ~ cannot be resolved, use /home/${USER} instead
 
 # Change your keymap:
-if [ -e "~/.Xmodmap" ] ; then
-    xmodmap "~/.Xmodmap"
+if [ -e "/home/${USER}/.Xmodmap" ] ; then
+    xmodmap "/home/${USER}/.Xmodmap"
 fi
 
 # Applications you want to run with fluxbox.
@@ -40,7 +41,7 @@ check_and_start vmware-user-suid-wrapper
 check_and_start nm-applet
 
 # Run this to set the background to the last thing fluxbox configured it to
-if [ -e "~/.fluxbox/lastwallpaper" ] ; then
+if [ -e "/home/${USER}/.fluxbox/lastwallpaper" ] ; then
     fbsetbg -l
 fi
 
@@ -69,7 +70,7 @@ fi
 #  NotShowIn=GNOME;Unity:FLUXBOX;
 which fbautostart > /dev/null
 if [ $? -eq 0 ]; then
-    XDG_CONFIG_HOME=~/.config/fluxbox-autostart/ fbautostart &
+    XDG_CONFIG_HOME=/home/${USER}/.config/fluxbox-autostart/ fbautostart &
 fi
 
 # And last but not least we start fluxbox.
