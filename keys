@@ -194,12 +194,16 @@ Mod4 0xffb2 :     MacroCmd { MoveTo 0 50% } { ResizeTo 100% 50% }
 
 #KP_7
 Mod4 0xffb7 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 50% }
+Mod4 Shift bracketleft :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 50% }
 #KP_9
 Mod4 0xffb9 :     MacroCmd { MoveTo 50% 0 } { ResizeTo 50% 50% }
+Mod4 Shift bracketright :     MacroCmd { MoveTo 50% 0 } { ResizeTo 50% 50% }
 #KP_1
 Mod4 0xffb1 :     MacroCmd { MoveTo 0 50% } { ResizeTo 50% 50% }
+Mod4 Control bracketleft :     MacroCmd { MoveTo 0 50% } { ResizeTo 50% 50% }
 #KP_3
 Mod4 0xffb3 :     MacroCmd { MoveTo 50% 50% } { ResizeTo 50% 50% }
+Mod4 Control bracketright :     MacroCmd { MoveTo 50% 50% } { ResizeTo 50% 50% }
 
 #Shift KP_7
 Mod4 Shift 0xffb7 :     MacroCmd { MoveTo 0 0 } { ResizeTo 50% 25% }
