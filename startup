@@ -40,6 +40,9 @@ check_and_start vmware-user-suid-wrapper
 # Systray icon for network management, autostart doesn't start it properly
 check_and_start nm-applet
 
+# Systray icon must be enabled, then it will show up
+check_and_start xfce4-power-manager
+
 # Run this to set the background to the last thing fluxbox configured it to
 if [ -e "/home/${USER}/.fluxbox/lastwallpaper" ] ; then
     fbsetbg -l
