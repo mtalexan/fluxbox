@@ -50,6 +50,9 @@ check_and_start pasystray
 # Systray bluetooth icon, then it will show up
 check_and_start blueman-applet
 
+# custom script that sets the natural scrolling and touch tap
+check_and_start ~/.touchpad_config.sh
+
 # Run this to set the background to the last thing fluxbox configured it to
 if [ -e "/home/${USER}/.fluxbox/lastwallpaper" ] ; then
     fbsetbg -l
